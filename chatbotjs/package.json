@@ -13,7 +13,7 @@
     "esbuild": "^0.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.50.1"
+    "react-hook-form": "^7.51.0"
   },
   "devDependencies": {
     "@types/react-dom": "^18.2.17",
