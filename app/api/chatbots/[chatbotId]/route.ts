@@ -89,7 +89,8 @@ export async function PATCH(
   try {
     const openaiTest = new OpenAI({
       apiKey: payload.openAIKey
-    })
+    ,
+            timeout: 60000})
     await openaiTest.models.list()
   } catch (error) {
     return new Response("Invalid OpenAI API key", { status: 400, statusText: "Invalid OpenAI API key" })
@@ -149,7 +150,8 @@ export async function PATCH(
 
     const openai = new OpenAI({
       apiKey: openAIConfig?.globalAPIKey
-    })
+    ,
+            timeout: 60000})
 
     const model = await db.chatbotModel.findFirst({
       where: {
@@ -277,7 +279,8 @@ export async function DELETE(
 
         const openai = new OpenAI({
           apiKey: openAIConfig?.globalAPIKey
-        })
+        ,
+            timeout: 60000})
 
         await openai.beta.assistants.del(chatbot?.openaiId || '')
       } catch (error) {

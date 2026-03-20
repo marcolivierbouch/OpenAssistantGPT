@@ -51,7 +51,8 @@ export async function POST(req: Request) {
         try {
             const openaiTest = new OpenAI({
                 apiKey: body.openAIKey
-            })
+            ,
+            timeout: 60000})
             await openaiTest.models.list()
         } catch (error) {
             return new Response("Invalid OpenAI API key", { status: 400, statusText: "Invalid OpenAI API key" })
@@ -60,7 +61,8 @@ export async function POST(req: Request) {
         try {
             const openaiClient = new OpenAI({
                 apiKey: body.openAIKey
-            })
+            ,
+            timeout: 60000})
             await openaiClient.beta.assistants.retrieve(body.openAIAssistantId)
         } catch (error) {
             return new Response("Invalid OpenAI Assistant ID", { status: 400, statusText: "Invalid OpenAI Assistant ID" })

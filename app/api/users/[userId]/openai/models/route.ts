@@ -40,7 +40,8 @@ export async function GET(
 
         const openai = new OpenAI({
             apiKey: openAIConfig!.globalAPIKey
-        })
+        ,
+            timeout: 60000})
         const models = await openai.models.list()
 
         const idList: string[] = models.body.data.map(item => item.id);

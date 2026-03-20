@@ -138,7 +138,8 @@ export async function GET(
 
         const openai = new OpenAI({
             apiKey: openAIConfig?.globalAPIKey
-        })
+        ,
+            timeout: 60000})
 
         const crawler = await db.crawler.findFirst({
             select: {

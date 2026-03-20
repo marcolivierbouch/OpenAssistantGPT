@@ -33,7 +33,8 @@ export async function PATCH(
         try {
             const openai = new OpenAI({
                 apiKey: payload.globalAPIKey
-            })
+            ,
+            timeout: 60000})
             await openai.models.list()
         } catch (error) {
             return new Response("Invalid OpenAI API key", { status: 400, statusText: "Invalid OpenAI API key" })
