@@ -34,7 +34,8 @@ export async function GET(
 
     const openai = new OpenAI({
         apiKey: openaiKey.openaiKey,
-    });
+    ,
+            timeout: 60000});
 
     return handleFileFunction(openai, params.fileId)
 }

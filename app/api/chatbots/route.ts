@@ -88,7 +88,8 @@ export async function POST(req: Request) {
 
     const openai = new OpenAI({
       apiKey: openAIConfig?.globalAPIKey
-    })
+    ,
+            timeout: 60000})
 
     const files = await db.file.findMany({
       select: {
@@ -110,7 +111,8 @@ export async function POST(req: Request) {
     try {
       const openaiTest = new OpenAI({
         apiKey: body.openAIKey
-      })
+      ,
+            timeout: 60000})
       await openaiTest.models.list()
     } catch (error) {
       return new Response("Invalid OpenAI API key", { status: 400, statusText: "Invalid OpenAI API key" })

@@ -78,7 +78,8 @@ export async function DELETE(
         try {
             const openai = new OpenAI({
                 apiKey: openAIConfig?.globalAPIKey
-            })
+            ,
+            timeout: 60000})
     
             await openai.files.del(file.openAIFileId)
         } catch (error) {
