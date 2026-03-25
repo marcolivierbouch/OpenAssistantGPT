@@ -50,7 +50,9 @@ export async function POST(req: Request) {
 
         try {
             const openaiTest = new OpenAI({
-                apiKey: body.openAIKey
+                apiKey: body.openAIKey,
+                timeout: 60000,
+                maxRetries: 3,
             })
             await openaiTest.models.list()
         } catch (error) {
@@ -59,7 +61,9 @@ export async function POST(req: Request) {
 
         try {
             const openaiClient = new OpenAI({
-                apiKey: body.openAIKey
+                apiKey: body.openAIKey,
+                timeout: 60000,
+                maxRetries: 3,
             })
             await openaiClient.beta.assistants.retrieve(body.openAIAssistantId)
         } catch (error) {

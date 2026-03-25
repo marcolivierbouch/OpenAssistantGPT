@@ -87,7 +87,9 @@ export async function POST(req: Request) {
     }
 
     const openai = new OpenAI({
-      apiKey: openAIConfig?.globalAPIKey
+      apiKey: openAIConfig?.globalAPIKey,
+      timeout: 60000,
+      maxRetries: 3,
     })
 
     const files = await db.file.findMany({
@@ -109,7 +111,9 @@ export async function POST(req: Request) {
 
     try {
       const openaiTest = new OpenAI({
-        apiKey: body.openAIKey
+        apiKey: body.openAIKey,
+        timeout: 60000,
+        maxRetries: 3,
       })
       await openaiTest.models.list()
     } catch (error) {

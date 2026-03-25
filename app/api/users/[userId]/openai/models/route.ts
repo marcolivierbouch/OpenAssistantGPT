@@ -39,7 +39,9 @@ export async function GET(
         }
 
         const openai = new OpenAI({
-            apiKey: openAIConfig!.globalAPIKey
+            apiKey: openAIConfig!.globalAPIKey,
+            timeout: 60000,
+            maxRetries: 3,
         })
         const models = await openai.models.list()
 
