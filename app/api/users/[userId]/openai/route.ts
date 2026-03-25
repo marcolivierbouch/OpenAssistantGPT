@@ -32,7 +32,9 @@ export async function PATCH(
 
         try {
             const openai = new OpenAI({
-                apiKey: payload.globalAPIKey
+                apiKey: payload.globalAPIKey,
+                timeout: 60000,
+                maxRetries: 3,
             })
             await openai.models.list()
         } catch (error) {

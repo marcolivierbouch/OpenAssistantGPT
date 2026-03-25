@@ -77,9 +77,11 @@ export async function DELETE(
 
         try {
             const openai = new OpenAI({
-                apiKey: openAIConfig?.globalAPIKey
+                apiKey: openAIConfig?.globalAPIKey,
+                timeout: 60000,
+                maxRetries: 3,
             })
-    
+
             await openai.files.del(file.openAIFileId)
         } catch (error) {
             console.log(`Cant delete file in OpenAI ${error}`)

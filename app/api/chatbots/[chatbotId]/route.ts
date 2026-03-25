@@ -88,7 +88,9 @@ export async function PATCH(
 
   try {
     const openaiTest = new OpenAI({
-      apiKey: payload.openAIKey
+      apiKey: payload.openAIKey,
+      timeout: 60000,
+      maxRetries: 3,
     })
     await openaiTest.models.list()
   } catch (error) {
@@ -148,7 +150,9 @@ export async function PATCH(
     })
 
     const openai = new OpenAI({
-      apiKey: openAIConfig?.globalAPIKey
+      apiKey: openAIConfig?.globalAPIKey,
+      timeout: 60000,
+      maxRetries: 3,
     })
 
     const model = await db.chatbotModel.findFirst({
@@ -276,7 +280,9 @@ export async function DELETE(
         }
 
         const openai = new OpenAI({
-          apiKey: openAIConfig?.globalAPIKey
+          apiKey: openAIConfig?.globalAPIKey,
+          timeout: 60000,
+          maxRetries: 3,
         })
 
         await openai.beta.assistants.del(chatbot?.openaiId || '')

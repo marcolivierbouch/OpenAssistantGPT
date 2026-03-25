@@ -59,6 +59,8 @@ export async function POST(
 
         const openai = new OpenAI({
             apiKey: chatbot.openaiKey,
+            timeout: 60000,
+            maxRetries: 3,
         })
 
         const input = await req.formData();
